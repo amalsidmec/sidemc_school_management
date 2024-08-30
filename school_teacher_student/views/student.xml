@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<!--    tree view for student-->
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree string="student details">
+
+                <field name="name"/>
+                <field name="address"/>
+                <field name="guardian_phone"/>
+                <field name="guardian_phone"/>
+                <field name="date_of_birth"/>
+                <field name="joining_date"/>
+                <field name="class_teacher"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    form view for student-->
+
+   <record id="view_student_form" model="ir.ui.view">
+       <field name="name">school.student.form</field>
+       <field name="model">school.student</field>
+       <field name="arch" type="xml">
+           <form string="student form details">
+               <header>
+                    <button name="action_select" string="SELECT"
+                            type="object" class="oe_highlight" title="Mark as Selected"
+                            invisible="select_status == 'selected'"/>
+                    <field name="select_status" widget="statusbar"/>
+                </header>
+               <sheet>
+                   <group>
+                       <field name="name"/>
+                       <field name="address"/>
+                       <field name="guardian_name"/>
+                       <field name="guardian_phone"/>
+                       <field name="date_of_birth"/>
+                       <field name="joining_date"/>
+                       <field name="class_teacher"/>
+                       <field name="teacher_ids" widget="many2many_tags"/>
+                   </group>
+
+                   <notebook>
+                        <page name="fees_structure" string="Fees Structure">
+                            <field name="fee_structure_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="fees_amount"/>
+                                    <field name="from_date"/>
+                                    <field name="to_date"/>
+                                    <field name="tax_amount"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="fees_amount"/>
+                                        <field name="from_date"/>
+                                        <field name="to_date"/>
+                                        <field name="tax_amount"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+             </sheet>
+           </form>
+       </field>
+   </record>
+<!--    graph view-->
+    <record id="view_student_graph" model="ir.ui.view">
+        <field name="name">school.student.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <graph string="Student Record" sample="1">
+                <field name="name"/>
+            </graph>
+        </field>
+    </record>
+
+<!--    student Action-->
+    <record id="student_action" model="ir.actions.act_window" >
+        <field name="name">student</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form,graph</field>
+
+    </record>
+</odoo>
