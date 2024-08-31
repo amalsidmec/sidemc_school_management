@@ -11,6 +11,7 @@
         "security/ir.model.access.csv",
         "views/student.xml",
          "views/teacher.xml",
+         "views/query.xml",
          "views/menu.xml",
 
      ],

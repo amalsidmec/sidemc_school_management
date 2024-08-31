@@ -39,8 +39,10 @@
                        <field name="guardian_name"/>
                        <field name="guardian_phone"/>
                        <field name="date_of_birth"/>
+                       <field name="age"/>
                        <field name="joining_date"/>
                        <field name="class_teacher"/>
+                       <field name="teacher_mob_no"/>
                        <field name="teacher_ids" widget="many2many_tags"/>
                    </group>
 
