@@ -1,6 +1,9 @@
 from email.policy import default
 
-from odoo import models, fields
+from odoo import models, fields, api
+from datetime import datetime
+
+from odoo.tools.populate import compute
 
 
 class SchoolStudent(models.Model):
@@ -11,8 +14,10 @@ class SchoolStudent(models.Model):
     guardian_name = fields.Char(string="Guardian Name")
     guardian_phone = fields.Char(string="Guardian_Phone")
     date_of_birth = fields.Date(string="Date Of Birth")
+    age =fields.Integer(string="Age",compute="_compute_age",store=True)
     joining_date = fields.Date(string="Joining Date")
     class_teacher = fields.Many2one("school.teacher", string="class teacher")
+    teacher_mob_no = fields.Char(string="Teacher No")
     teacher_ids = fields.Many2many(
         'school.teacher', string="Other Subject Teachers",
         help='Mention the teachers who teach other subjects.')
@@ -22,8 +27,21 @@ class SchoolStudent(models.Model):
 
 
     def action_select(self):
-        print("loopp", self.name)
         self.select_status = 'selected'
+
+    @api.onchange("class_teacher")
+    def _onchange_teacher(self):
+       if self.class_teacher:
+         self.teacher_mob_no = self.class_teacher.phone_number
+
+    @api.depends('date_of_birth')
+    def _compute_age(self):
+        for record in self:
+            if record.date_of_birth:
+                today = datetime.today()
+                dob = fields.Date.from_string(record.date_of_birth)
+                age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+                record.age = age
 
 
 class SchoolTeacher(models.Model):
