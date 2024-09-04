@@ -1,0 +1,21 @@
+<odoo>
+    <record id="student_suggestion_view_form" model="ir.ui.view">
+        <field name="name">student.suggestion.view.form</field>
+        <field name="model">suggestion</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="std_class"/>
+                        <field name="suggestion"/>
+                    </group>
+                    <footer>
+                        <button name="suggestion_creation" type="object" string="REGISTER" class="oe_highlight"/>
+                        <button string="CANCEL" class="btn_secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
