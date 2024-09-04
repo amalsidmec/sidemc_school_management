@@ -7,13 +7,13 @@
     />
 
     <menuitem id="student_menu"
-              name="student"
+              name="Student"
               parent="school_menu"
               action="student_action"
     />
 
     <menuitem id="teacher_menu"
-              name="teacher"
+              name="Teacher"
               parent="school_menu"
               action="teacher_action"
     />
@@ -21,6 +21,11 @@
               name="Query"
               parent="school_menu"
               action="query_action"
+    />
+    <menuitem id="suggestion_menu"
+              name="Suggestion"
+              parent="school_menu"
+              action="suggestion_action"
     />
 
 </odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_student_suggestion_tree" model="ir.ui.view">
+        <field name="name">student.suggestion.tree</field>
+        <field name="model">student.suggestion</field>
+        <field name="arch" type="xml">
+            <tree string="Student Suggestion">
+                <field name="name"/>
+                <field name="standard"/>
+                <field name="suggestion"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_student_suggestion_form" model="ir.ui.view">
+        <field name="name">student.suggestion.tree</field>
+        <field name="model">student.suggestion</field>
+        <field name="arch" type="xml">
+            <form string="Student Suggestion">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="standard"/>
+                        <field name="suggestion"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="suggestion_action" model="ir.actions.act_window">
+        <field name="name">Student Suggestion</field>
+        <field name="res_model">student.suggestion</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="view_id" ref="view_student_tree"/>-->
+    </record>
+</odoo>

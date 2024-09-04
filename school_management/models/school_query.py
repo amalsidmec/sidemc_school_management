@@ -1,4 +1,5 @@
 from odoo import models, fields
+from odoo.exceptions import ValidationError
 
 
 class SchoolQuery(models.Model):
@@ -19,9 +20,15 @@ class SchoolQuery(models.Model):
     #     self.select_status = 'admit'
 
     def student_creation(self):
+        student_id = self.env["school.student"].search([("guardian_phone",'=',self.guardian_phon_no)] and [("name",'=',self.child_name)])
+
+        if student_id:
+            raise ValidationError("The Student with same Data already exists")
+
         student = self.env['school.student'].create({
             'name' : self.child_name,
-            'age' : self.child_age
+            'age' : self.child_age,
+            'guardian_phone':self.guardian_phon_no
 
         })
         self.select_status = 'admit'

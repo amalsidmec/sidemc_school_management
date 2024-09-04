@@ -2,6 +2,7 @@ from odoo import models,fields
 
 class FeesStructure(models.Model):
     _name = "fees.structure"
+    _rec_name = "tax_amount"
 
     name = fields.Char(string="Name",required=True)
     fees_amount =fields.Float(string = "Fees Amount")

@@ -40,7 +40,7 @@
 
 <!--    teacher action-->
     <record id="teacher_action" model="ir.actions.act_window">
-        <field name="name">teacher</field>
+        <field name="name">Teacher</field>
         <field name="res_model">school.teacher</field>
         <field name="view_mode">tree,form</field>
 
